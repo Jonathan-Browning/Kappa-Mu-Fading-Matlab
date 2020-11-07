@@ -1,6 +1,6 @@
 classdef KappaMu
-    %RICE This class holds all the parameters for the Rician fading model.
-    % It calculates theoretical envelope and phase PDFs
+    %KappaMu This class holds all the parameters for the \kappa-\mu fading model.
+    % It calculates theoretical envelope PDF
     % It does a Monte Carlo simulation using the parameters
     
     properties(Constant, Hidden = true)
@@ -9,7 +9,7 @@ classdef KappaMu
     end 
     
     properties(Access = public)
-        kappa; % Rician K factor
+        kappa; 
         mu; % number of clusters
         r_hat; % root mean square of the signal
     end
@@ -23,7 +23,6 @@ classdef KappaMu
     
     methods(Access = public)
         function obj = KappaMu(kappa,mu,r_hat)
-            %ADDITIVESHADOWRICE Construct an instance of this class
             
             %   Assigning input values
             obj.kappa = input_Check(obj,kappa,'\kappa',0,50);
@@ -90,7 +89,7 @@ classdef KappaMu
         end
         
         function [multipathFading] = Multipath_Fading(obj) 
-            %complex_MultipathFading Generates the Rician fading model 
+            %complex_MultipathFading Generates the random variables
             
             [p_i, q_i] = means(obj);
             [sigma2] = scattered_Component(obj);
